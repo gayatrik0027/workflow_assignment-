@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+ id="Definitions_ITServiceRequest" targetNamespace="http://example.com/bpmn">
+ <bpmn:process id="ITServiceRequest" name="IT Service Request" isExecutable="true">
+  <bpmn:startEvent id="S" name="Employee submits IT support request"/>
+  <bpmn:task id="A" name="IT help desk receives the request"/>
+  <bpmn:task id="B" name="Check severity of problem"/>
+  <bpmn:exclusiveGateway id="G1" name="Problem severity?"/>
+  <bpmn:task id="C" name="Assign to support technician"/>
+  <bpmn:task id="D" name="Assign to senior technician"/>
+  <bpmn:task id="E" name="Technician investigates the problem"/>
+  <bpmn:exclusiveGateway id="G2" name="Problem resolved?"/>
+  <bpmn:task id="F" name="Technician fixes the problem"/>
+  <bpmn:task id="G" name="Escalate to external service provider"/>
+  <bpmn:task id="H" name="Help desk updates request status"/>
+  <bpmn:task id="I" name="Employee receives resolution notification"/>
+  <bpmn:endEvent id="J" name="Process ends"/>
+  <bpmn:sequenceFlow id="f1" sourceRef="S" targetRef="A"/>
+  <bpmn:sequenceFlow id="f2" sourceRef="A" targetRef="B"/>
+  <bpmn:sequenceFlow id="f3" sourceRef="B" targetRef="G1"/>
+  <bpmn:sequenceFlow id="f4" sourceRef="G1" targetRef="C" name="Low/Medium"/>
+  <bpmn:sequenceFlow id="f5" sourceRef="G1" targetRef="D" name="High"/>
+  <bpmn:sequenceFlow id="f6" sourceRef="C" targetRef="E"/>
+  <bpmn:sequenceFlow id="f7" sourceRef="D" targetRef="E"/>
+  <bpmn:sequenceFlow id="f8" sourceRef="E" targetRef="G2"/>
+  <bpmn:sequenceFlow id="f9" sourceRef="G2" targetRef="F" name="Yes"/>
+  <bpmn:sequenceFlow id="f10" sourceRef="G2" targetRef="G" name="No"/>
+  <bpmn:sequenceFlow id="f11" sourceRef="F" targetRef="H"/>
+  <bpmn:sequenceFlow id="f12" sourceRef="G" targetRef="H"/>
+  <bpmn:sequenceFlow id="f13" sourceRef="H" targetRef="I"/>
+  <bpmn:sequenceFlow id="f14" sourceRef="I" targetRef="J"/>
+ </bpmn:process>
+ <bpmndi:BPMNDiagram id="BPMNDiagram_ITServiceRequest">
+  <bpmndi:BPMNPlane id="BPMNPlane_ITServiceRequest" bpmnElement="ITServiceRequest">
+   <bpmndi:BPMNShape id="S_di" bpmnElement="S"><dc:Bounds x="70" y="250" width="36" height="36"/></bpmndi:BPMNShape>
+   <bpmndi:BPMNShape id="A_di" bpmnElement="A"><dc:Bounds x="150" y="238" width="190" height="60"/></bpmndi:BPMNShape>
+   <bpmndi:BPMNShape id="B_di" bpmnElement="B"><dc:Bounds x="390" y="238" width="170" height="60"/></bpmndi:BPMNShape>
+   <bpmndi:BPMNShape id="G1_di" bpmnElement="G1"><dc:Bounds x="610" y="243" width="50" height="50"/></bpmndi:BPMNShape>
+   <bpmndi:BPMNShape id="C_di" bpmnElement="C"><dc:Bounds x="710" y="140" width="190" height="60"/></bpmndi:BPMNShape>
+   <bpmndi:BPMNShape id="D_di" bpmnElement="D"><dc:Bounds x="710" y="350" width="190" height="60"/></bpmndi:BPMNShape>
+   <bpmndi:BPMNShape id="E_di" bpmnElement="E"><dc:Bounds x="950" y="238" width="210" height="60"/></bpmndi:BPMNShape>
+   <bpmndi:BPMNShape id="G2_di" bpmnElement="G2"><dc:Bounds x="1210" y="243" width="50" height="50"/></bpmndi:BPMNShape>
+   <bpmndi:BPMNShape id="F_di" bpmnElement="F"><dc:Bounds x="1310" y="140" width="180" height="60"/></bpmndi:BPMNShape>
+   <bpmndi:BPMNShape id="G_di" bpmnElement="G"><dc:Bounds x="1310" y="350" width="250" height="60"/></bpmndi:BPMNShape>
+   <bpmndi:BPMNShape id="H_di" bpmnElement="H"><dc:Bounds x="1610" y="238" width="220" height="60"/></bpmndi:BPMNShape>
+   <bpmndi:BPMNShape id="I_di" bpmnElement="I"><dc:Bounds x="1880" y="238" width="240" height="60"/></bpmndi:BPMNShape>
+   <bpmndi:BPMNShape id="J_di" bpmnElement="J"><dc:Bounds x="2160" y="250" width="36" height="36"/></bpmndi:BPMNShape>
+   <bpmndi:BPMNEdge id="f1_di" bpmnElement="f1">
+    <di:waypoint x="106" y="268"/>
+    <di:waypoint x="150" y="268"/>
+   </bpmndi:BPMNEdge>
+   <bpmndi:BPMNEdge id="f2_di" bpmnElement="f2">
+    <di:waypoint x="340" y="268"/>
+    <di:waypoint x="390" y="268"/>
+   </bpmndi:BPMNEdge>
+   <bpmndi:BPMNEdge id="f3_di" bpmnElement="f3">
+    <di:waypoint x="560" y="268"/>
+    <di:waypoint x="610" y="268"/>
+   </bpmndi:BPMNEdge>
+   <bpmndi:BPMNEdge id="f4_di" bpmnElement="f4">
+    <di:waypoint x="635" y="243"/>
+    <di:waypoint x="635" y="170"/>
+    <di:waypoint x="710" y="170"/>
+   </bpmndi:BPMNEdge>
+   <bpmndi:BPMNEdge id="f5_di" bpmnElement="f5">
+    <di:waypoint x="635" y="293"/>
+    <di:waypoint x="635" y="380"/>
+    <di:waypoint x="710" y="380"/>
+   </bpmndi:BPMNEdge>
+   <bpmndi:BPMNEdge id="f6_di" bpmnElement="f6">
+    <di:waypoint x="900" y="170"/>
+    <di:waypoint x="925" y="170"/>
+    <di:waypoint x="925" y="268"/>
+    <di:waypoint x="950" y="268"/>
+   </bpmndi:BPMNEdge>
+   <bpmndi:BPMNEdge id="f7_di" bpmnElement="f7">
+    <di:waypoint x="900" y="380"/>
+    <di:waypoint x="925" y="380"/>
+    <di:waypoint x="925" y="268"/>
+    <di:waypoint x="950" y="268"/>
+   </bpmndi:BPMNEdge>
+   <bpmndi:BPMNEdge id="f8_di" bpmnElement="f8">
+    <di:waypoint x="1160" y="268"/>
+    <di:waypoint x="1210" y="268"/>
+   </bpmndi:BPMNEdge>
+   <bpmndi:BPMNEdge id="f9_di" bpmnElement="f9">
+    <di:waypoint x="1235" y="243"/>
+    <di:waypoint x="1235" y="170"/>
+    <di:waypoint x="1310" y="170"/>
+   </bpmndi:BPMNEdge>
+   <bpmndi:BPMNEdge id="f10_di" bpmnElement="f10">
+    <di:waypoint x="1235" y="293"/>
+    <di:waypoint x="1235" y="380"/>
+    <di:waypoint x="1310" y="380"/>
+   </bpmndi:BPMNEdge>
+   <bpmndi:BPMNEdge id="f11_di" bpmnElement="f11">
+    <di:waypoint x="1490" y="170"/>
+    <di:waypoint x="1540" y="170"/>
+    <di:waypoint x="1540" y="268"/>
+    <di:waypoint x="1610" y="268"/>
+   </bpmndi:BPMNEdge>
+   <bpmndi:BPMNEdge id="f12_di" bpmnElement="f12">
+    <di:waypoint x="1560" y="380"/>
+    <di:waypoint x="1580" y="380"/>
+    <di:waypoint x="1580" y="268"/>
+    <di:waypoint x="1610" y="268"/>
+   </bpmndi:BPMNEdge>
+   <bpmndi:BPMNEdge id="f13_di" bpmnElement="f13">
+    <di:waypoint x="1830" y="268"/>
+    <di:waypoint x="1880" y="268"/>
+   </bpmndi:BPMNEdge>
+   <bpmndi:BPMNEdge id="f14_di" bpmnElement="f14">
+    <di:waypoint x="2120" y="268"/>
+    <di:waypoint x="2160" y="268"/>
+   </bpmndi:BPMNEdge>
+  </bpmndi:BPMNPlane>
+ </bpmndi:BPMNDiagram>
+</bpmn:definitions>

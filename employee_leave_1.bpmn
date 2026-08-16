@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+ id="Definitions_LeaveApproval" targetNamespace="http://example.com/bpmn">
+ <bpmn:process id="LeaveApproval" name="Employee Leave Approval" isExecutable="true">
+  <bpmn:startEvent id="Start" name="Employee submits leave request"/>
+  <bpmn:task id="A" name="Check leave balance"/>
+  <bpmn:exclusiveGateway id="G1" name="Sufficient leave balance?"/>
+  <bpmn:task id="B" name="Send request to manager"/>
+  <bpmn:exclusiveGateway id="G2" name="Manager approves?"/>
+  <bpmn:task id="C" name="Update employee leave balance"/>
+  <bpmn:task id="D" name="Send approval notification"/>
+  <bpmn:endEvent id="E" name="Process ends"/>
+  <bpmn:task id="F" name="Send rejection notification"/>
+  <bpmn:endEvent id="G" name="Process ends"/>
+  <bpmn:task id="H" name="Send insufficient-balance notification"/>
+  <bpmn:endEvent id="I" name="Process ends"/>
+  <bpmn:sequenceFlow id="f1" sourceRef="Start" targetRef="A"/>
+  <bpmn:sequenceFlow id="f2" sourceRef="A" targetRef="G1"/>
+  <bpmn:sequenceFlow id="f3" sourceRef="G1" targetRef="B" name="Yes"/>
+  <bpmn:sequenceFlow id="f4" sourceRef="G1" targetRef="H" name="No"/>
+  <bpmn:sequenceFlow id="f5" sourceRef="H" targetRef="I"/>
+  <bpmn:sequenceFlow id="f6" sourceRef="B" targetRef="G2"/>
+  <bpmn:sequenceFlow id="f7" sourceRef="G2" targetRef="C" name="Yes"/>
+  <bpmn:sequenceFlow id="f8" sourceRef="G2" targetRef="F" name="No"/>
+  <bpmn:sequenceFlow id="f9" sourceRef="C" targetRef="D"/>
+  <bpmn:sequenceFlow id="f10" sourceRef="D" targetRef="E"/>
+  <bpmn:sequenceFlow id="f11" sourceRef="F" targetRef="G"/>
+ </bpmn:process>
+ <bpmndi:BPMNDiagram id="BPMNDiagram_LeaveApproval">
+  <bpmndi:BPMNPlane id="BPMNPlane_LeaveApproval" bpmnElement="LeaveApproval">
+   <bpmndi:BPMNShape id="Start_di" bpmnElement="Start"><dc:Bounds x="80" y="250" width="36" height="36"/></bpmndi:BPMNShape>
+   <bpmndi:BPMNShape id="A_di" bpmnElement="A"><dc:Bounds x="160" y="238" width="130" height="60"/></bpmndi:BPMNShape>
+   <bpmndi:BPMNShape id="G1_di" bpmnElement="G1"><dc:Bounds x="350" y="243" width="50" height="50"/></bpmndi:BPMNShape>
+   <bpmndi:BPMNShape id="B_di" bpmnElement="B"><dc:Bounds x="460" y="150" width="150" height="60"/></bpmndi:BPMNShape>
+   <bpmndi:BPMNShape id="G2_di" bpmnElement="G2"><dc:Bounds x="670" y="155" width="50" height="50"/></bpmndi:BPMNShape>
+   <bpmndi:BPMNShape id="C_di" bpmnElement="C"><dc:Bounds x="770" y="100" width="180" height="60"/></bpmndi:BPMNShape>
+   <bpmndi:BPMNShape id="D_di" bpmnElement="D"><dc:Bounds x="1000" y="100" width="180" height="60"/></bpmndi:BPMNShape>
+   <bpmndi:BPMNShape id="E_di" bpmnElement="E"><dc:Bounds x="1230" y="112" width="36" height="36"/></bpmndi:BPMNShape>
+   <bpmndi:BPMNShape id="F_di" bpmnElement="F"><dc:Bounds x="770" y="210" width="180" height="60"/></bpmndi:BPMNShape>
+   <bpmndi:BPMNShape id="G_di" bpmnElement="G"><dc:Bounds x="1000" y="222" width="36" height="36"/></bpmndi:BPMNShape>
+   <bpmndi:BPMNShape id="H_di" bpmnElement="H"><dc:Bounds x="460" y="330" width="230" height="60"/></bpmndi:BPMNShape>
+   <bpmndi:BPMNShape id="I_di" bpmnElement="I"><dc:Bounds x="750" y="342" width="36" height="36"/></bpmndi:BPMNShape>
+   <bpmndi:BPMNEdge id="f1_di" bpmnElement="f1">
+    <di:waypoint x="116" y="268"/>
+    <di:waypoint x="160" y="268"/>
+   </bpmndi:BPMNEdge>
+   <bpmndi:BPMNEdge id="f2_di" bpmnElement="f2">
+    <di:waypoint x="290" y="268"/>
+    <di:waypoint x="350" y="268"/>
+   </bpmndi:BPMNEdge>
+   <bpmndi:BPMNEdge id="f3_di" bpmnElement="f3">
+    <di:waypoint x="375" y="243"/>
+    <di:waypoint x="375" y="180"/>
+    <di:waypoint x="460" y="180"/>
+   </bpmndi:BPMNEdge>
+   <bpmndi:BPMNEdge id="f4_di" bpmnElement="f4">
+    <di:waypoint x="375" y="293"/>
+    <di:waypoint x="375" y="360"/>
+    <di:waypoint x="460" y="360"/>
+   </bpmndi:BPMNEdge>
+   <bpmndi:BPMNEdge id="f5_di" bpmnElement="f5">
+    <di:waypoint x="690" y="360"/>
+    <di:waypoint x="750" y="360"/>
+   </bpmndi:BPMNEdge>
+   <bpmndi:BPMNEdge id="f6_di" bpmnElement="f6">
+    <di:waypoint x="610" y="180"/>
+    <di:waypoint x="670" y="180"/>
+   </bpmndi:BPMNEdge>
+   <bpmndi:BPMNEdge id="f7_di" bpmnElement="f7">
+    <di:waypoint x="695" y="155"/>
+    <di:waypoint x="695" y="130"/>
+    <di:waypoint x="770" y="130"/>
+   </bpmndi:BPMNEdge>
+   <bpmndi:BPMNEdge id="f8_di" bpmnElement="f8">
+    <di:waypoint x="695" y="205"/>
+    <di:waypoint x="695" y="240"/>
+    <di:waypoint x="770" y="240"/>
+   </bpmndi:BPMNEdge>
+   <bpmndi:BPMNEdge id="f9_di" bpmnElement="f9">
+    <di:waypoint x="950" y="130"/>
+    <di:waypoint x="1000" y="130"/>
+   </bpmndi:BPMNEdge>
+   <bpmndi:BPMNEdge id="f10_di" bpmnElement="f10">
+    <di:waypoint x="1180" y="130"/>
+    <di:waypoint x="1230" y="130"/>
+   </bpmndi:BPMNEdge>
+   <bpmndi:BPMNEdge id="f11_di" bpmnElement="f11">
+    <di:waypoint x="950" y="240"/>
+    <di:waypoint x="1000" y="240"/>
+   </bpmndi:BPMNEdge>
+  </bpmndi:BPMNPlane>
+ </bpmndi:BPMNDiagram>
+</bpmn:definitions>
